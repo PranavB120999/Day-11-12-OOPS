@@ -2,52 +2,49 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace InventoryProblem1
+namespace StockManagementProblem
 {
-    public class Inventory
+    public class Stock
     {
-        public int Sum { get; set; }
-        public List<Items> Rice;
-        public List<Items> Pulses;
-        public List<Items> Wheats;
-    }
-    public class Items
-    {
-        public string brand;
-        public int PricePerKg;
-        public int Weight;
-        public int TotalPrice;
+        public String name { get; set; }
+        public int NumberOfShares { get; set; }
+        public int SharePrice { get; set; }
+        public int StockPrice { get; set; }
 
+        public override string ToString()
+        {
+            return String.Format("Name: {0}\nPrice: {1}\nNumber of Shares: {2}", name, SharePrice, NumberOfShares);
+        }
     }
 
-    public class InventoryManagement
+    public class StockPortfolio
     {
+        public int grandTotal { get; set; }
+        public List<Stock> StockList;
+
         public static void Main()
         {
-            Console.WriteLine("Welcome to Inventory Program");
-            InventoryImp imp = new InventoryImp();
             while (true)
             {
-                Console.WriteLine("1. Add Items");
-                Console.WriteLine("2. Display Inventory");
-                int read = int.Parse(Console.ReadLine());
-                switch (read)
+
+                Console.WriteLine("\nWelcome to Stock Management Program \n" +
+                    "Enter 1 to Add new Stock\n" +
+                    "Enter 2 for the Total Value of Stock\n");
+                int entered = int.Parse(Console.ReadLine());
+                StockManager sm = new StockManager();
+
+                switch (entered)
                 {
                     case 1:
-                        imp.Add();
+                        sm.AddStock();
                         break;
                     case 2:
-                        imp.Display();
+                        sm.ValueOfStacks();
                         break;
+
                     default:
-                        Console.WriteLine("Enter a valid character");
+                        Console.WriteLine("Invalid Entry");
                         break;
-                }
-                Console.WriteLine("enter yes to continue \nno to exit");
-                string inp = Console.ReadLine();
-                if (inp != "yes")
-                {
-                    break;
                 }
             }
         }
