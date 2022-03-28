@@ -25,11 +25,12 @@ namespace InventoryProblem1
         public static void Main()
         {
             Console.WriteLine("Welcome to Inventory Program");
-            InventoryImp imp = new InventoryImp();
+            Inventory_Management_Problem2 imp = new Inventory_Management_Problem2();
             while (true)
             {
                 Console.WriteLine("1. Add Items");
                 Console.WriteLine("2. Display Inventory");
+                Console.WriteLine("3. Delete Item");
                 int read = int.Parse(Console.ReadLine());
                 switch (read)
                 {
@@ -39,12 +40,16 @@ namespace InventoryProblem1
                     case 2:
                         imp.Display();
                         break;
+                    case 3:
+                        imp.Delete();
+                        break;
                     default:
                         Console.WriteLine("Enter a valid character");
                         break;
                 }
                 Console.WriteLine("enter yes to continue \nno to exit");
                 string inp = Console.ReadLine();
+                //to continue the loop
                 if (inp != "yes")
                 {
                     break;
